@@ -1,6 +1,7 @@
 package com.imooc.order.utils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.imooc.order.entity.ProductInfo;
 
@@ -29,12 +30,12 @@ public class JsonUtil {
     /**
      * json转对象
      * @param jsonStr
-     * @param obj
+     * @param typeReference
      * @return
      */
-    public static Object fromJson(String jsonStr,Object obj) {
+    public static Object fromJson(String jsonStr,TypeReference typeReference) {
         try {
-            return objectMapper.readValue(jsonStr, ProductInfo.class);
+            return objectMapper.readValue(jsonStr, typeReference);
         } catch (IOException e) {
             e.printStackTrace();
         }
