@@ -15,10 +15,7 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.MediaType;
 import org.springframework.util.CollectionUtils;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.HashMap;
@@ -72,5 +69,15 @@ public class OrderController {
 
         return ResultVoUtil.success(map);
 
+    }
+
+    /**
+     * 完结订单
+     * @param orderid
+     * @return
+     */
+    @PostMapping(value = "/finish",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResultVo<OrderDto> finish(@RequestParam("orderid") String orderid){
+        return ResultVoUtil.success(orderService.finish(orderid));
     }
 }
