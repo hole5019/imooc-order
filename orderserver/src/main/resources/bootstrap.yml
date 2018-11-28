@@ -16,3 +16,15 @@ management:
     web:
       exposure:
         include: bus-refresh
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 1000
+    getProductInfoList2:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 3000
