@@ -23,13 +23,14 @@ public class HystrixController {
 //    @HystrixCommand(commandProperties = {
 //            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds",value = "3000")
 //    })
-//    @HystrixCommand(commandProperties = {
-//            @HystrixProperty(name = "circuitBreaker.enabled",value = "true"),
-//            @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold",value = "10"),
-//            @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds",value = "10000"),
-//            @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage",value = "60")
-//    })
-    @HystrixCommand(commandKey = "getProductInfoList2")
+    @HystrixCommand(commandKey = "getProductInfoList2",
+            commandProperties = {
+            @HystrixProperty(name = "circuitBreaker.enabled",value = "true"),
+            @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold",value = "10"),
+            @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds",value = "10000"),
+            @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage",value = "60")
+    })
+//    @HystrixCommand(commandKey = "getProductInfoList2")
     @GetMapping(value = "/getProductInfoList",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public String getProductInfoList(@RequestParam("num") Integer num){
         if(num % 2 == 0){
